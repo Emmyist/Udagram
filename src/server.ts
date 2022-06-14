@@ -36,25 +36,15 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
       try {
         if (!image_url) {
           return res.status(400).send("Image URL is needed. Please provide one");
-        }  
-      
-        
-        console.log(image_url)
-        console.log(req.query)
+        }   
+             
 
-        let file_directory: string[] = []
-                
-          let image = await filterImageFromURL(String(image_url));     
+        let file_directory: string[] = []                
+        let image = await filterImageFromURL(String(image_url));     
           
-          res.status(200).send(image)
-          file_directory.push(image)
-        // }
-        // catch(error){
-        //   res.status(400).send(`Error ${error}`)
-        // }
+        res.status(200).send(image)
+        file_directory.push(image)
         
-        
-        // await deleteLocalFiles(file_directory)
       }
       catch(error){
         res.status(422).send(`${error}`)
