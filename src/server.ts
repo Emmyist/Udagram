@@ -30,7 +30,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   /**************************************************************************** */
 
-  app.get( "/filteredimage/", async (req, res) => {
+  app.get( "/filteredimage/", async (req: express.Request, res: express.Response) => {
       let { image_url } = req.query;
 
       try {
@@ -40,14 +40,13 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
              
 
         let file_directory: string[] = []                
-        let image = await filterImageFromURL(String(image_url));     
-          
+        let image = await filterImageFromURL(String(image_url));          
         res.status(200).send(image)
         file_directory.push(image)
         
       }
       catch(error){
-        res.status(422).send(`${error}`)
+        res.status(422).sendFile(`${error}`)
 
       }     
            
